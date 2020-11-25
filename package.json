@@ -10,6 +10,6 @@
   ],
   "repository": {
     "type": "git",
-xo    "url": "https://github.com/kiki-lamb/Arduino_STM32"
+    "url": "http://github.com/kiki-lamb/Arduino_STM32.git#w-pio-package-json"
   }
 }
