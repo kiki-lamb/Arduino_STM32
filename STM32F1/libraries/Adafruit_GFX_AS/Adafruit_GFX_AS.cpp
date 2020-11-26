@@ -141,14 +141,14 @@ byte line = 0;
 for(int16_t i=0; i<height; i++)
 {
   if (textcolor != textbgcolor) {
-    if (textsize_x == 1) drawFastHLine(x, pY, width+gap, textbgcolor);
-    else fillRect(x, pY, (width+gap)*textsize_x, textsize_x, textbgcolor);
+    if (textsize == 1) drawFastHLine(x, pY, width+gap, textbgcolor);
+    else fillRect(x, pY, (width+gap)*textsize, textsize, textbgcolor);
   }
   for (int16_t k = 0;k < w; k++)
   { 
     line = pgm_read_byte(flash_address+w*i+k);
     if(line) {
-      if (textsize_x==1){
+      if (textsize==1){
         pX = x + k*8;
         if(line & 0x80) drawPixel(pX, pY, textcolor);
         if(line & 0x40) drawPixel(pX+1, pY, textcolor);
@@ -160,21 +160,21 @@ for(int16_t i=0; i<height; i++)
         if(line & 0x1) drawPixel(pX+7, pY, textcolor);
       }
        else {
-        pX = x + k*8*textsize_x;
-        if(line & 0x80) fillRect(pX, pY, textsize_x, textsize_x, textcolor);
-        if(line & 0x40) fillRect(pX+textsize_x, pY, textsize_x, textsize_x, textcolor);
-        if(line & 0x20) fillRect(pX+2*textsize_x, pY, textsize_x, textsize_x, textcolor);
-        if(line & 0x10) fillRect(pX+3*textsize_x, pY, textsize_x, textsize_x, textcolor);
-        if(line & 0x8) fillRect(pX+4*textsize_x, pY, textsize_x, textsize_x, textcolor);
-        if(line & 0x4) fillRect(pX+5*textsize_x, pY, textsize_x, textsize_x, textcolor);
-        if(line & 0x2) fillRect(pX+6*textsize_x, pY, textsize_x, textsize_x, textcolor);
-        if(line & 0x1) fillRect(pX+7*textsize_x, pY, textsize_x, textsize_x, textcolor);
+        pX = x + k*8*textsize;
+        if(line & 0x80) fillRect(pX, pY, textsize, textsize, textcolor);
+        if(line & 0x40) fillRect(pX+textsize, pY, textsize, textsize, textcolor);
+        if(line & 0x20) fillRect(pX+2*textsize, pY, textsize, textsize, textcolor);
+        if(line & 0x10) fillRect(pX+3*textsize, pY, textsize, textsize, textcolor);
+        if(line & 0x8) fillRect(pX+4*textsize, pY, textsize, textsize, textcolor);
+        if(line & 0x4) fillRect(pX+5*textsize, pY, textsize, textsize, textcolor);
+        if(line & 0x2) fillRect(pX+6*textsize, pY, textsize, textsize, textcolor);
+        if(line & 0x1) fillRect(pX+7*textsize, pY, textsize, textsize, textcolor);
       }
     }
   }
-  pY+=textsize_x;
+  pY+=textsize;
 }
-return (width+gap)*textsize_x;        // x +
+return (width+gap)*textsize;        // x +
 }
 
 /***************************************************************************************
@@ -248,7 +248,7 @@ int16_t Adafruit_GFX_AS::drawCentreString(char *string, int16_t dX, int16_t poY,
 #endif
         *pointer++;
     }
-    len = len*textsize_x;
+    len = len*textsize;
     int16_t poX = dX - len/2;
 
     if (poX < 0) poX = 0;
@@ -299,7 +299,7 @@ int16_t Adafruit_GFX_AS::drawRightString(char *string, int16_t dX, int16_t poY, 
         *pointer++;
     }
     
-    len = len*textsize_x;
+    len = len*textsize;
     int16_t poX = dX - len;
 
     if (poX < 0) poX = 0;
